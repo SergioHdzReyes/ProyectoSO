@@ -8,15 +8,64 @@ using namespace std;
 int main(void)
 {
     fuentes obj;
+    int opc;
 
-    obj.proceso = getpid();
-    obj.getFecha();
-    obj.padre = getppid();
-    obj.user = getuid();
-    obj.group = getgid();
+    while(true){
+        obj.menu();
+        cin>>opc;
+        system("clear");
+        switch(opc){
+        case 1:
+            obj.getFecha();
+            getchar();
+            break;
+        case 2:
+            obj.getProcesoID();
+            getchar();
+            break;
+        case 3:
+            obj.getProcesoPadreID();
+            getchar();
+            break;
+        case 4:
+            obj.getUserID();
+            getchar();
+            break;
+        case 5:
+            signal(SIGALRM, obj.alarmhand);
+            obj.alarmhand(1);
+            getchar();
+            break;
+        case 6:
+            obj.detenerAlarma(1);
+            getchar();
+            break;
+        case 7:
+            obj.openFile();
+            getchar();
+            break;
+        case 8:
+            obj.closeFile();
+            getchar();
+            break;
+        case 9:
+            obj.createFile();
+            getchar();
+            break;
+        case 10:
+            obj.deleteFile();
+            getchar();
+            break;
+        case 11:
+            obj.writeFile();
+            getchar();
+            break;
+        case 0:
+            exit(1);
+        }
+        getchar();
+        system("clear");
+    }
 
-    printf("Proceso: %d\nPadre: %d\n", obj.proceso, obj.padre);
-
-    cout<<"\n";
     return 0;
 }
